@@ -77,9 +77,9 @@ class BookDetails: UIViewController, UITextFieldDelegate {
             
             if((error) != nil)
             {
-                let alertController = UIAlertController(title: "ISBN Information", message:
-                    error?.description, preferredStyle: UIAlertControllerStyle.Alert)
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                let alertController = UIAlertController(title: "Fallo en la Red", message:
+                    error?.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
                 
                 self.presentViewController(alertController, animated: true, completion: nil)
             }
@@ -90,47 +90,57 @@ class BookDetails: UIViewController, UITextFieldDelegate {
                     let json = try NSJSONSerialization.JSONObjectWithData(datos!, options: NSJSONReadingOptions.MutableLeaves)
                     let key = "ISBN:" + self.isbn.text!
                     let dico1 = json as! NSDictionary
-                    let dico2 = dico1[key] as! NSDictionary
-                    let title = dico2["title"] as! NSString as String
+                    print(dico1.count)
                     
-                    let authors = dico2["authors"] as? [[String: AnyObject]]
-                    
-                    var authorsNames: String = ""
-                    for author  in authors!
-                    {
-                        if let name = author["name"] as? String
+                    if (dico1.count>5){
+                        
+                        let dico2 = dico1[key] as! NSDictionary
+                        let title = dico2["title"] as! NSString as String
+                        
+                        let authors = dico2["authors"] as? [[String: AnyObject]]
+                        
+                        var authorsNames: String = ""
+                        for author  in authors!
                         {
-                            // Do stuff with data
-                            if ( authorsNames != "" )
+                            if let name = author["name"] as? String
                             {
-                                authorsNames = authorsNames + ","
+                                // Do stuff with data
+                                if ( authorsNames != "" )
+                                {
+                                    authorsNames = authorsNames + ","
+                                }
+                                authorsNames = authorsNames + (name)
                             }
-                            authorsNames = authorsNames + (name)
                         }
-                    }
-                    
-                    if let covers1 = dico2["cover"]
-                    {
-                        let covers = covers1 as! NSDictionary
-                        let cover = covers["medium"] as! NSString as String
-                        if let checkedUrl = NSURL(string: cover) {
-                            //self.imageView.contentMode = .ScaleAspectFit
-                            self.downloadImage(checkedUrl)
-                        }
-                    }else{
-                        self.portada.image = UIImage(contentsOfFile: "sin-imagen.jpg")
-                    }
-                    
-                    dispatch_async(dispatch_get_main_queue(), {
-                        // code here
-                        //self.resultsTextView.text = (texto as! String)
-                        self.titulo.text = title
-                        self.autor.text = authorsNames
-                        if (self.codigo == "")
+                        
+                        if let covers1 = dico2["cover"]
                         {
-                            self.delegate?.bookDetails(title, bookISBN: self.isbn.text!)
+                            let covers = covers1 as! NSDictionary
+                            let cover = covers["medium"] as! NSString as String
+                            if let checkedUrl = NSURL(string: cover) {
+                                //self.imageView.contentMode = .ScaleAspectFit
+                                self.downloadImage(checkedUrl)
+                            }
+                        }else{
+                            self.portada.image = UIImage(contentsOfFile: "sin-imagen.jpg")
                         }
-                    })
+                        
+                        dispatch_async(dispatch_get_main_queue(), {
+                            // code here
+                            //self.resultsTextView.text = (texto as! String)
+                            self.titulo.text = title
+                            self.autor.text = authorsNames
+                            if (self.codigo == "")
+                            {
+                                self.delegate?.bookDetails(title, bookISBN: self.isbn.text!)
+                            }
+                        })
+                    }else{
+                        let alertController = UIAlertController(title: "¡ Inexistente !", message:
+                            "No existe Libro con ISBN: \(self.isbn.text!)", preferredStyle: UIAlertControllerStyle.Alert)
+                        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
+                        self.presentViewController(alertController, animated: true, completion: nil)
+                    }
                     
                 }
                 catch _{
