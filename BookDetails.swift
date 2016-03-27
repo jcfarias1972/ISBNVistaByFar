@@ -92,7 +92,7 @@ class BookDetails: UIViewController, UITextFieldDelegate {
                     let dico1 = json as! NSDictionary
                     print(dico1.count)
                     
-                    if (dico1.count>5){
+                    if (dico1.count>0){
                         
                         let dico2 = dico1[key] as! NSDictionary
                         let title = dico2["title"] as! NSString as String
@@ -167,8 +167,18 @@ class BookDetails: UIViewController, UITextFieldDelegate {
                 print(response?.suggestedFilename ?? "")
                 print("Download Finished")
                 self.portada.image = UIImage(data: data)
+                self.disolver()
             }
         }
+    }
+
+    
+    func disolver(){
+        UIView.transitionWithView(self.portada,
+            duration:5,
+            options: .TransitionCrossDissolve,
+            animations: { self.portada.image = self.portada.image },
+            completion: nil)
     }
 
 
