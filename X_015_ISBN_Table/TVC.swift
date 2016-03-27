@@ -55,6 +55,7 @@ class TVC: UITableViewController, BookDetailsDelegate {
 
         // Configure the cell...
         cell.textLabel?.text = self.busquedas[indexPath.row][0]
+        cell.detailTextLabel?.text = "ISBN: " + self.busquedas[indexPath.row][1]
         if (indexPath.row%2)==0{
             cell.backgroundColor = UIColor(red: 240/255, green: 248/255, blue: 255/255, alpha: 1)
         }else{

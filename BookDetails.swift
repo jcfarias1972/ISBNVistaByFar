@@ -87,6 +87,9 @@ class BookDetails: UIViewController, UITextFieldDelegate {
             {
                 do
                 {
+                        self.portada.image = UIImage(contentsOfFile: "sin-imagen.jpg")
+                        self.disolver()
+                        
                     let json = try NSJSONSerialization.JSONObjectWithData(datos!, options: NSJSONReadingOptions.MutableLeaves)
                     let key = "ISBN:" + self.isbn.text!
                     let dico1 = json as! NSDictionary
@@ -120,9 +123,13 @@ class BookDetails: UIViewController, UITextFieldDelegate {
                             if let checkedUrl = NSURL(string: cover) {
                                 //self.imageView.contentMode = .ScaleAspectFit
                                 self.downloadImage(checkedUrl)
+                            }else{
+                                self.portada.image = UIImage(contentsOfFile: "sin-imagen.jpg")
+                                self.disolver()
                             }
                         }else{
                             self.portada.image = UIImage(contentsOfFile: "sin-imagen.jpg")
+                            self.disolver()
                         }
                         
                         dispatch_async(dispatch_get_main_queue(), {

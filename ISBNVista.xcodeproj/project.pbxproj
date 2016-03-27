@@ -14,7 +14,7 @@
 		A1746A291CA4CBAE000F7141 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1746A271CA4CBAE000F7141 /* LaunchScreen.storyboard */; };
 		A1746A311CA4CCC3000F7141 /* TVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1746A301CA4CCC3000F7141 /* TVC.swift */; };
 		A1746A331CA4D138000F7141 /* BookDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1746A321CA4D138000F7141 /* BookDetails.swift */; };
-		CCB31DA31CA65E9B001EB3E9 /* sin-imagen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CCB31DA21CA65E9B001EB3E9 /* sin-imagen.jpg */; };
+		CC9782771CA79038002644A3 /* sin-imagen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CC9782761CA79038002644A3 /* sin-imagen.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +27,7 @@
 		A1746A2A1CA4CBAE000F7141 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1746A301CA4CCC3000F7141 /* TVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVC.swift; sourceTree = "<group>"; };
 		A1746A321CA4D138000F7141 /* BookDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BookDetails.swift; path = ../BookDetails.swift; sourceTree = "<group>"; };
-		CCB31DA21CA65E9B001EB3E9 /* sin-imagen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "sin-imagen.jpg"; sourceTree = "<group>"; };
+		CC9782761CA79038002644A3 /* sin-imagen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "sin-imagen.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +60,7 @@
 		A1746A1A1CA4CBAE000F7141 /* ISBNVista */ = {
 			isa = PBXGroup;
 			children = (
-				CCB31DA21CA65E9B001EB3E9 /* sin-imagen.jpg */,
+				CC9782761CA79038002644A3 /* sin-imagen.jpg */,
 				A1746A321CA4D138000F7141 /* BookDetails.swift */,
 				A1746A1B1CA4CBAE000F7141 /* AppDelegate.swift */,
 				A1746A1F1CA4CBAE000F7141 /* Main.storyboard */,
@@ -133,7 +133,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1746A291CA4CBAE000F7141 /* LaunchScreen.storyboard in Resources */,
-				CCB31DA31CA65E9B001EB3E9 /* sin-imagen.jpg in Resources */,
+				CC9782771CA79038002644A3 /* sin-imagen.jpg in Resources */,
 				A1746A261CA4CBAE000F7141 /* Assets.xcassets in Resources */,
 				A1746A211CA4CBAE000F7141 /* Main.storyboard in Resources */,
 			);
