@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A1746A171CA4CBAE000F7141"
-               BuildableName = "ISBNVista.app"
-               BlueprintName = "ISBNVista"
-               ReferencedContainer = "container:ISBNVista.xcodeproj">
+               BuildableName = "ISBNVistaPersistencia.app"
+               BlueprintName = "ISBNVistaPersistencia"
+               ReferencedContainer = "container:ISBNVistaPersistencia.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A1746A171CA4CBAE000F7141"
-            BuildableName = "ISBNVista.app"
-            BlueprintName = "ISBNVista"
-            ReferencedContainer = "container:ISBNVista.xcodeproj">
+            BuildableName = "ISBNVistaPersistencia.app"
+            BlueprintName = "ISBNVistaPersistencia"
+            ReferencedContainer = "container:ISBNVistaPersistencia.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A1746A171CA4CBAE000F7141"
-            BuildableName = "ISBNVista.app"
-            BlueprintName = "ISBNVista"
-            ReferencedContainer = "container:ISBNVista.xcodeproj">
+            BuildableName = "ISBNVistaPersistencia.app"
+            BlueprintName = "ISBNVistaPersistencia"
+            ReferencedContainer = "container:ISBNVistaPersistencia.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A1746A171CA4CBAE000F7141"
-            BuildableName = "ISBNVista.app"
-            BlueprintName = "ISBNVista"
-            ReferencedContainer = "container:ISBNVista.xcodeproj">
+            BuildableName = "ISBNVistaPersistencia.app"
+            BlueprintName = "ISBNVistaPersistencia"
+            ReferencedContainer = "container:ISBNVistaPersistencia.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

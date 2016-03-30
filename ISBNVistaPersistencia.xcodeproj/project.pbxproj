@@ -18,7 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A1746A181CA4CBAE000F7141 /* ISBNVista.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ISBNVista.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1746A181CA4CBAE000F7141 /* ISBNVistaPersistencia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ISBNVistaPersistencia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1746A1B1CA4CBAE000F7141 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1746A201CA4CBAE000F7141 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A1746A231CA4CBAE000F7141 /* X_015_ISBN_Table.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = X_015_ISBN_Table.xcdatamodel; sourceTree = "<group>"; };
@@ -44,7 +44,7 @@
 		A1746A0F1CA4CBAE000F7141 = {
 			isa = PBXGroup;
 			children = (
-				A1746A1A1CA4CBAE000F7141 /* ISBNVista */,
+				A1746A1A1CA4CBAE000F7141 /* ISBNVistaPersistencia */,
 				A1746A191CA4CBAE000F7141 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -52,12 +52,12 @@
 		A1746A191CA4CBAE000F7141 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A1746A181CA4CBAE000F7141 /* ISBNVista.app */,
+				A1746A181CA4CBAE000F7141 /* ISBNVistaPersistencia.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A1746A1A1CA4CBAE000F7141 /* ISBNVista */ = {
+		A1746A1A1CA4CBAE000F7141 /* ISBNVistaPersistencia */ = {
 			isa = PBXGroup;
 			children = (
 				CC9782761CA79038002644A3 /* sin-imagen.jpg */,
@@ -70,16 +70,16 @@
 				A1746A221CA4CBAE000F7141 /* X_015_ISBN_Table.xcdatamodeld */,
 				A1746A301CA4CCC3000F7141 /* TVC.swift */,
 			);
-			name = ISBNVista;
+			name = ISBNVistaPersistencia;
 			path = X_015_ISBN_Table;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A1746A171CA4CBAE000F7141 /* ISBNVista */ = {
+		A1746A171CA4CBAE000F7141 /* ISBNVistaPersistencia */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A1746A2D1CA4CBAE000F7141 /* Build configuration list for PBXNativeTarget "ISBNVista" */;
+			buildConfigurationList = A1746A2D1CA4CBAE000F7141 /* Build configuration list for PBXNativeTarget "ISBNVistaPersistencia" */;
 			buildPhases = (
 				A1746A141CA4CBAE000F7141 /* Sources */,
 				A1746A151CA4CBAE000F7141 /* Frameworks */,
@@ -89,9 +89,9 @@
 			);
 			dependencies = (
 			);
-			name = ISBNVista;
+			name = ISBNVistaPersistencia;
 			productName = X_015_ISBN_Table;
-			productReference = A1746A181CA4CBAE000F7141 /* ISBNVista.app */;
+			productReference = A1746A181CA4CBAE000F7141 /* ISBNVistaPersistencia.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -105,11 +105,11 @@
 				TargetAttributes = {
 					A1746A171CA4CBAE000F7141 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = Z38VEX3LXQ;
+						DevelopmentTeam = 3BA96S3QTG;
 					};
 				};
 			};
-			buildConfigurationList = A1746A131CA4CBAE000F7141 /* Build configuration list for PBXProject "ISBNVista" */;
+			buildConfigurationList = A1746A131CA4CBAE000F7141 /* Build configuration list for PBXProject "ISBNVistaPersistencia" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -122,7 +122,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A1746A171CA4CBAE000F7141 /* ISBNVista */,
+				A1746A171CA4CBAE000F7141 /* ISBNVistaPersistencia */,
 			);
 		};
 /* End PBXProject section */
@@ -260,10 +260,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = X_015_ISBN_Table/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "mx.com.ulocate.X-015-ISBN-Table";
-				PRODUCT_NAME = ISBNVista;
+				PRODUCT_BUNDLE_IDENTIFIER = mx.com.ulocate.ISBNVistaPersistencia;
+				PRODUCT_NAME = ISBNVistaPersistencia;
 			};
 			name = Debug;
 		};
@@ -271,17 +272,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = X_015_ISBN_Table/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "mx.com.ulocate.X-015-ISBN-Table";
-				PRODUCT_NAME = ISBNVista;
+				PRODUCT_BUNDLE_IDENTIFIER = mx.com.ulocate.ISBNVistaPersistencia;
+				PRODUCT_NAME = ISBNVistaPersistencia;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A1746A131CA4CBAE000F7141 /* Build configuration list for PBXProject "ISBNVista" */ = {
+		A1746A131CA4CBAE000F7141 /* Build configuration list for PBXProject "ISBNVistaPersistencia" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A1746A2B1CA4CBAE000F7141 /* Debug */,
@@ -290,7 +292,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A1746A2D1CA4CBAE000F7141 /* Build configuration list for PBXNativeTarget "ISBNVista" */ = {
+		A1746A2D1CA4CBAE000F7141 /* Build configuration list for PBXNativeTarget "ISBNVistaPersistencia" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A1746A2E1CA4CBAE000F7141 /* Debug */,

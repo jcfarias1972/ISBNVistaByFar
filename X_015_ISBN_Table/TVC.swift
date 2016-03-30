@@ -6,22 +6,41 @@
 //
 
 import UIKit
+//Paso 01: Importar CoreData
+import CoreData
 
 class TVC: UITableViewController, BookDetailsDelegate {
 
     var busquedas : Array<Array<String>> = Array<Array<String>>()
-    
+    //Paso 02: declarar el contexto:
+    var contexto : NSManagedObjectContext? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.title = "Busca Libros"
-        self.busquedas.append(["Programming Symposium","0387068597"])
+        
+        //Paso 02: Establecer el estado del contexto (obtener el delegate:
+        self.contexto = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        
+        let libroEntidad = NSEntityDescription.entityForName("Libro", inManagedObjectContext: self.contexto!)
+        let peticion = libroEntidad?.managedObjectModel.fetchRequestTemplateForName("petLibros")
+        do{
+            let librosEntidad = try self.contexto?.executeFetchRequest(peticion!)
+            for seccionEntidad2 in librosEntidad! {
+                let isbnLibro = seccionEntidad2.valueForKey("isbn") as! String
+                let nombreLibro = seccionEntidad2.valueForKey("titulo") as! String
+                self.busquedas.append([nombreLibro,isbnLibro])
+                print("ISBN: \(isbnLibro), Título: \(nombreLibro)")
+            }
+        }catch _ {
+            
+        }
+        /*self.busquedas.append(["Programming Symposium","0387068597"])
         self.busquedas.append(["The Witching Hour","9781425723705"])
         self.busquedas.append(["Beginning iOS game development","9781118107324"])
         self.busquedas.append(["Learning iOS Programming","9781449303778"])
         self.busquedas.append(["AndroidTM","9780071599894"])
-        self.busquedas.append(["Cien años de soledad","9788437604947"])
+        self.busquedas.append(["Cien años de soledad","9788437604947"])*/
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -66,6 +85,7 @@ class TVC: UITableViewController, BookDetailsDelegate {
     
     @IBAction func agregarNuevo(sender: AnyObject) {
         self.performSegueWithIdentifier("BookDetails", sender: self)
+        //self.performSegueWithIdentifier("BookDetails", sender: contexto!)
     }
 
     

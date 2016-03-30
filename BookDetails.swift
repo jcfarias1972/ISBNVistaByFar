@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 @objc protocol BookDetailsDelegate {
     func bookDetails(bookName: String, bookISBN: String)
@@ -15,6 +16,9 @@ class BookDetails: UIViewController, UITextFieldDelegate {
 
     var codigo = ""
     weak var delegate: BookDetailsDelegate?
+    //Paso 02: declarar el contexto:
+    var contexto : NSManagedObjectContext? = nil
+    var existe:Bool = false
     
     @IBOutlet weak var isbn: UITextField!
     @IBOutlet weak var titulo: UILabel!
@@ -25,13 +29,17 @@ class BookDetails: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
 
         isbn.delegate = self
+        
+        //Paso 02: Establecer el estado del contexto (obtener el delegate:
+        contexto = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        
         // Do any additional setup after loading the view.
         isbn.text = codigo
         
         if (codigo != "")
         {
             self.portada.image = nil
-            getISBNInfo(isbn.text!)
+            getISBNInfo(isbn.text!, vieneDeListado: true)
             isbn.enabled = false
         }
         else
@@ -54,7 +62,7 @@ class BookDetails: UIViewController, UITextFieldDelegate {
         self.isbn.resignFirstResponder()
         self.portada.image = nil
         self.isbn.enabled = false
-        getISBNInfo(isbn.text!)
+        getISBNInfo(isbn.text!, vieneDeListado: false)
         
         return true
     }
@@ -68,7 +76,34 @@ class BookDetails: UIViewController, UITextFieldDelegate {
     }
     */
     
-    func getISBNInfo( isbn: NSString){
+    func getISBNInfo( isbn: NSString, vieneDeListado: Bool){
+        existe = false
+        
+        //Paso 03: Verificar si ese libro ya fue buscado anteriormente...
+        let libroEntidad = NSEntityDescription.entityForName("Libro", inManagedObjectContext: self.contexto!)
+        let peticion = libroEntidad?.managedObjectModel.fetchRequestFromTemplateWithName("petLibro", substitutionVariables: ["isbn": self.isbn.text!])
+        do{
+            let libroEntidad2 = try self.contexto?.executeFetchRequest(peticion!)
+            if (libroEntidad2?.count > 0 && !vieneDeListado){
+                let alertController = UIAlertController(title: "Libro ya consultado", message:
+                    "No puede ser agregado.", preferredStyle: UIAlertControllerStyle.Alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
+                
+                self.presentViewController(alertController, animated: true, completion: nil)
+                //self.isbn.text = nil
+                
+                existe = true
+            }else{
+                /*let alertController = UIAlertController(title: "Libro Nuevo", message:
+                    "Puede ser agregado.", preferredStyle: UIAlertControllerStyle.Alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default,handler: nil))
+                
+                self.presentViewController(alertController, animated: true, completion: nil)*/
+            }
+            
+        }catch _ {
+            
+        }
         
         let urls = "https://openlibrary.org/api/books?jscmd=data&format=json&bibkeys=ISBN:" + (isbn as String)
         let url = NSURL(string: urls)
@@ -87,8 +122,8 @@ class BookDetails: UIViewController, UITextFieldDelegate {
             {
                 do
                 {
-                        self.portada.image = UIImage(contentsOfFile: "sin-imagen.jpg")
-                        self.disolver()
+                        /*self.portada.image = UIImage(contentsOfFile: "sin-imagen.jpg")
+                        self.disolver() */
                         
                     let json = try NSJSONSerialization.JSONObjectWithData(datos!, options: NSJSONReadingOptions.MutableLeaves)
                     let key = "ISBN:" + self.isbn.text!
@@ -139,7 +174,9 @@ class BookDetails: UIViewController, UITextFieldDelegate {
                             self.autor.text = authorsNames
                             if (self.codigo == "")
                             {
-                                self.delegate?.bookDetails(title, bookISBN: self.isbn.text!)
+                                if (!self.existe){
+                                    self.delegate?.bookDetails(title, bookISBN: self.isbn.text!)
+                                }
                             }
                         })
                     }else{
@@ -154,7 +191,22 @@ class BookDetails: UIViewController, UITextFieldDelegate {
                     
                 }
             }
-            //print(texto!)
+            print("Título: \(self.titulo.text!)")
+            print("ISBN: \(self.isbn.text!)")
+            
+            if (!self.existe && !vieneDeListado) {
+                let nuevoLibroEntidad = NSEntityDescription.insertNewObjectForEntityForName("Libro", inManagedObjectContext: self.contexto!)
+                nuevoLibroEntidad.setValue(self.titulo.text!, forKey: "titulo")
+                nuevoLibroEntidad.setValue(self.isbn.text!, forKey: "isbn")
+                
+                do{
+                    try self.contexto?.save()
+                }catch _ {
+                    print("Error al grabar libro...")
+                }
+            }
+            
+            
         }
         let dt = session.dataTaskWithURL(url!, completionHandler: bloque)
         dt.resume()
@@ -172,7 +224,7 @@ class BookDetails: UIViewController, UITextFieldDelegate {
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
                 guard let data = data where error == nil else { return }
                 print(response?.suggestedFilename ?? "")
-                print("Download Finished")
+                print("Descarga Terminada...")
                 self.portada.image = UIImage(data: data)
                 self.disolver()
             }
